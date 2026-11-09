@@ -1,0 +1,17 @@
+HiSearch
+
+This source release derives from GrepSeek:
+https://github.com/alirezasalemi7/grepseek
+The original authors' notices and Apache License 2.0 are retained.
+The upstream citation metadata is preserved in docs/GrepSeek.CITATION.cff.
+
+HiSearch additions include hybrid dense/shell retrieval and candidate scopes,
+multi-trajectory SFT, and maintained five-criterion rubric rewards for GSPO.
+Existing source files also contain local training, tool, and checkpoint fixes.
+See docs/PROVENANCE.md and verl/VENDORED.md for provenance and modifications.
+
+The vendored verl runtime retains its own LICENSE and Notice.txt:
+Copyright 2023-2024 Bytedance Ltd. and/or its affiliates
+
+The optional Search-R1 encoder is an external dependency and is not vendored.
+Model weights, datasets, and indexes are not included in this source release.

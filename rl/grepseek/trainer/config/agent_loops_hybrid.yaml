@@ -1,0 +1,5 @@
+- name: grepseek_hybrid_agent
+  _target_: grepseek.trainer.verl_integration.hybrid_agent_loop.HybridAgentLoop
+  force_final_answer_at_tool_limit: true
+  prefill_final_answer_at_tool_limit: true
+  final_answer_max_tokens: 256

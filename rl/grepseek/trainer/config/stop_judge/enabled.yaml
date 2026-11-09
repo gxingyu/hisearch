@@ -1,0 +1,24 @@
+# Modified for HiSearch; see root docs/PROVENANCE.md for local changes.
+reward:
+  num_workers: 8
+  secret_env_vars:
+    - GREPSEEK_STOP_JUDGE_API_KEY
+  reward_manager:
+    name: naive
+
+custom_reward_function:
+  name: grepseek_stop_judge_reward
+  reward_kwargs:
+    enable_length_decay: false
+    stop_judge_enabled: true
+    stop_judge_model: glm-5-3-flash
+    stop_judge_base_url: http://127.0.0.1:8100/v1
+    stop_judge_api_key_env: GREPSEEK_STOP_JUDGE_API_KEY
+    stop_judge_penalty: 0.2
+    stop_judge_concurrency: 8
+    stop_judge_timeout: 60
+    stop_judge_retries: 2
+    stop_judge_max_tokens: 2048
+    stop_judge_disable_thinking: true
+    stop_judge_cache_dir: ${trainer.default_local_dir}/stop_judge_cache
+    stop_judge_audit_path: ${trainer.default_local_dir}/stop_judge_requests.jsonl

@@ -1,0 +1,55 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.cache/
+build/
+dist/
+
+# Local inputs and generated resources. Do not ignore rl/grepseek/data/ source.
+/data/
+/models/
+/checkpoints/
+/outputs/
+/output/
+**/outputs/
+wandb/
+multirun/
+*.log
+*.pid
+*.sock
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.index
+*.npy
+*.npz
+*.parquet
+*.arrow
+*.jsonl
+*.zip
+*.tar
+*.gz
+*.download
+
+# Credentials and local overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*.json
+servers.local.json
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+.ipynb_checkpoints/

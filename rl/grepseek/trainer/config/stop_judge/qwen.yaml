@@ -1,0 +1,16 @@
+# Modified for HiSearch; see root docs/PROVENANCE.md for local changes.
+defaults:
+  - enabled
+  - _self_
+
+reward:
+  num_workers: 8
+
+custom_reward_function:
+  reward_kwargs:
+    stop_judge_model: qwen38-27b-stop-judge
+    stop_judge_base_url: ${oc.env:GREPSEEK_STOP_JUDGE_URL,http://127.0.0.1:8100/v1}
+    stop_judge_concurrency: 16
+    stop_judge_timeout: 180
+    stop_judge_max_tokens: 512
+    stop_judge_thinking_parameter: chat_template_kwargs

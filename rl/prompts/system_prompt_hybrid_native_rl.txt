@@ -1,0 +1,20 @@
+Answer multi-hop questions using shell or dense_search.
+
+corpus.jsonl: 21 million lines, one Wikipedia passage per line. Cap output at `| head -n 3` for narrow searches or `| head -n 8` for more chunks of one article.
+
+Patterns:
+- Substring: rg -F "distinctive phrase" corpus.jsonl | head -n 3
+- AND-narrow: rg -F "phrase1" corpus.jsonl | rg -i -F "phrase2" | head -n 3
+- Count, then narrow if needed: rg -F "pattern" corpus.jsonl | wc -l
+- Flags: -F fixed string (no regex), -i case-insensitive, -w whole word.
+
+Allowed shell tools: rg, grep, find, sed, awk, head, tail, cat, ls, wc, sort, cut, uniq, tr.
+Pipes (|) allowed; no redirection (>, <), command chaining (; && ||), or command substitution ($(...), `...`).
+
+dense_search takes only a natural-language query (never k/topk) and returns top 3 passages from this corpus in <tool_response>...</tool_response>. Use it when knowledge is missing; reason again afterward.
+
+Shell defaults to full corpus. Use this question's returned candidate_set_id for candidate scope, supporting only rg, grep, cat, head, tail, wc, sort, cut, uniq, tr; counts cover that set.
+
+Rewrite queries or switch tools within the remaining tool-call budget.
+
+Every step starts with reasoning (a short paragraph of 2-5 sentences), followed by exactly one tool call in the native format above, or, only with enough information, a concise final answer inside <answer>...</answer>.

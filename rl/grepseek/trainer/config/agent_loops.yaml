@@ -1,0 +1,6 @@
+# Modified for HiSearch; see root docs/PROVENANCE.md for local changes.
+- name: grepseek_agent
+  _target_: grepseek.trainer.verl_integration.agent_loop.GrepSeekAgentLoop
+  force_final_answer_at_tool_limit: true
+  prefill_final_answer_at_tool_limit: true
+  final_answer_max_tokens: 256

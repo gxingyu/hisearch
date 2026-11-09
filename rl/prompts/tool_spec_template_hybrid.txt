@@ -1,0 +1,2 @@
+Available tools (JSON schemas):
+{tool_spec}

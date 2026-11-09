@@ -1,0 +1,6 @@
+- name: grepseek_hybrid_tool_limit_invalid_agent
+  _target_: grepseek.trainer.verl_integration.hybrid_agent_loop.HybridAgentLoop
+  tool_limit_behavior: truncate_invalid
+  force_final_answer_at_tool_limit: false
+  prefill_final_answer_at_tool_limit: false
+  final_answer_max_tokens: 256

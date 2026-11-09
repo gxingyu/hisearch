@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "version": 0,
+  "effective_from_step": 1,
+  "origin": "human_authored_bootstrap_v1; not an offline model-generation result",
+  "rubrics": [
+    {
+      "id": "information_need",
+      "revision": 0,
+      "criterion": "Queries, tool choices and search scopes address a concrete unresolved information need.",
+      "applicability": "All trajectories, including a decision to answer without further retrieval.",
+      "pass_conditions": ["Actions target the entities, relations and constraints in the question or earlier visible evidence."],
+      "fail_conditions": ["Queries pursue an unrelated entity or repeat a search without addressing an unresolved need."],
+      "exceptions": ["A plausible unsuccessful exploratory query is not by itself a failure.", "No fixed tool order or tool mixture is required."]
+    },
+    {
+      "id": "observation_scope",
+      "revision": 0,
+      "criterion": "Conclusions respect the actual search scope and the visible completeness of observations.",
+      "applicability": "Trajectories that interpret retrieved text, empty results, errors or scope-limited searches.",
+      "pass_conditions": ["The agent distinguishes candidate-local no_hits, global search results, execution errors and incomplete text."],
+      "fail_conditions": ["Candidate-local absence is asserted as corpus-wide absence.", "The agent relies on unseen or truncated-away content, or treats an error as evidence of absence."],
+      "exceptions": ["Repeated passage ids may reveal new visible spans after truncation.", "Global query no_hits is not proof of exhaustive semantic coverage."]
+    },
+    {
+      "id": "evidence_linkage",
+      "revision": 0,
+      "criterion": "The answer's required relations are grounded in visible evidence with consistent entity identity.",
+      "applicability": "All final answers; evaluate only the number of relations the question actually requires.",
+      "pass_conditions": ["Visible evidence supports the requested relation and entity identity; necessary bridge relations are linked."],
+      "fail_conditions": ["An answer string is present but does not support the requested relation.", "A homonymous entity or missing bridge is used as if it established the answer."],
+      "exceptions": ["A single-hop question needs no artificial multi-hop chain.", "Do not demand multiple sources or both retrieval tools when the evidence is sufficient."]
+    },
+    {
+      "id": "search_recovery",
+      "revision": 0,
+      "criterion": "The agent responds appropriately to the actual usefulness and limitations of search observations.",
+      "applicability": "Trajectories with retrieval; a successful first retrieval can satisfy the objective without a recovery action.",
+      "pass_conditions": ["Useful evidence is used, and unresolved gaps after weak or incomplete results prompt a relevant adjustment."],
+      "fail_conditions": ["The agent repeatedly ignores an unresolved gap, blindly repeats ineffective searches, or fabricates a successful recovery."],
+      "exceptions": ["Adjustment may use the same tool, a new query, candidate rereading or wider scope.", "An immediately uninformative bridge action can be necessary for later evidence."]
+    },
+    {
+      "id": "evidence_stopping",
+      "revision": 0,
+      "criterion": "Continuing retrieval or answering is justified by the evidence available at that point.",
+      "applicability": "All final answers and retrieval decisions.",
+      "pass_conditions": ["The agent stops after the required evidence is available and continues when a material unresolved gap remains."],
+      "fail_conditions": ["The agent performs demonstrably redundant searches after complete support, or answers despite a visible missing required relation."],
+      "exceptions": ["Necessary disambiguation, truncation rereads and verification are not redundant merely because the answer string was seen.", "A budget-forced answer is not evidence of voluntary timely stopping."]
+    }
+  ]
+}

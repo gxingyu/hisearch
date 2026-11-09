@@ -1,0 +1,9 @@
+torch==2.4.0
+numpy==1.26.4
+faiss-gpu-cu12[fix-cuda]==1.8.0.2
+transformers==4.48.3
+datasets==2.21.0
+huggingface-hub==0.28.1
+fastapi==0.115.8
+uvicorn==0.34.0
+requests==2.32.3

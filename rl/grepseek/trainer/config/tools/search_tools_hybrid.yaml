@@ -1,0 +1,18 @@
+tools:
+  - class_name: grepseek.trainer.verl_integration.hybrid_shell_tool.HybridShellTool
+    config:
+      type: native
+      corpus_root: ${oc.env:VERL_TOOL_CORPUS_ROOT,/path/to/wiki_18_corpus}
+      timeout_seconds: 180.0
+      max_output_tokens: 1024
+      executor_workers: 16
+  - class_name: grepseek.trainer.verl_integration.dense_search_tool.DenseSearchTool
+    config:
+      type: native
+      corpus_root: ${oc.env:VERL_TOOL_CORPUS_ROOT,/path/to/wiki_18_corpus}
+      data_root: ${oc.env:GREPSEEK_DENSE_DATA_ROOT,${oc.env:GREPSEEK_ROOT}/data/search_r1}
+      url: ${oc.env:GREPSEEK_DENSE_URL,http://127.0.0.1:8000/retrieve}
+      timeout_seconds: 180.0
+      max_output_tokens: 1024
+      executor_workers: 8
+      candidate_ttl_seconds: 3600.0

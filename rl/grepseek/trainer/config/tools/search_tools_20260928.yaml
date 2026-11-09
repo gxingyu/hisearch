@@ -1,0 +1,26 @@
+tools:
+  - class_name: "grepseek.trainer.verl_integration.search_corpus_tool.SearchCorpusTool"
+    tool_schema:
+      type: function
+      function:
+        name: shell
+        description: >
+          Run a single-pipeline shell command against the local Wikipedia corpus
+          (corpus.jsonl in the cwd; it is rewritten to wiki_corpus.jsonl on disk
+          before execution). Allowed commands: rg, grep, find, sed, awk, head,
+          tail, cat, ls, wc, sort, cut, uniq, tr. Pipes (|) are allowed.
+          Redirection, command chaining, and command substitution are not.
+        parameters:
+          type: object
+          properties:
+            command:
+              type: string
+              description: "A single shell pipeline to execute against corpus.jsonl."
+          required:
+            - command
+          additionalProperties: false
+    config:
+      type: native
+      corpus_root: ${oc.env:VERL_TOOL_CORPUS_ROOT,/path/to/wiki_18_corpus}
+      timeout_seconds: 180.0
+      max_output_tokens: 1024
